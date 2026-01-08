@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Words That Wound - An Anthropological Study of Hate Speech</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f8f9fa;
+        }
+        
+        /* Navigation */
+        nav {
+            background: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #2c3e50;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #e74c3c;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: normal;
+            letter-spacing: 2px;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+        
+        .hero .research-question {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(255,255,255,0.1);
+            border-left: 4px solid #e74c3c;
+            font-size: 1.1rem;
+            text-align: left;
+        }
+        
+        .content-warning {
+            background: #fff3cd;
+            color: #856404;
+            padding: 1rem 2rem;
+            text-align: center;
+            border-bottom: 3px solid #ffc107;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        /* Section Styles */
+        section {
+            background: white;
+            margin-bottom: 2rem;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        section h2 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            border-bottom: 3px solid #e74c3c;
+            padding-bottom: 0.5rem;
+        }
+        
+        section h3 {
+            color: #34495e;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        section p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        
+        /* World Cards */
+        .worlds-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .world-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid #e74c3c;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        
+        .world-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .world-card h3 {
+            margin-top: 0;
+            color: #e74c3c;
+        }
+        
+        /* Episode Player */
+        .episode {
+            background: #f8f9fa;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .episode h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        
+        .episode-meta {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .audio-player {
+            width: 100%;
+            margin: 1rem 0;
+        }
+        
+        /* About Section Boxes */
+        .info-box {
+            background: #ecf0f1;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .info-box h4 {
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        /* Ethics Section */
+        .ethics-principles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .principle {
+            background: #e8f5e9;
+            padding: 1.5rem;
+            border-radius: 5px;
+            border-top: 3px solid #4caf50;
+        }
+        
+        .principle h4 {
+            color: #2e7d32;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: #e74c3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .btn:hover {
+            background: #c0392b;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+            
+            section {
+                padding: 2rem 1.5rem;
+            }
+        }
+        
+        /* Active Page Indicator */
+        .active-page {
+            display: block;
+        }
+        
+        .hidden-page {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Content Warning Banner -->
+    <div class="content-warning">
+        ⚠️ <strong>Content Warning:</strong> This project discusses hate speech, slurs, and discrimination. Viewer discretion advised.
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo" onclick="showPage('home')">Words That Wound</a>
+            <ul>
+                <li><a href="#" onclick="showPage('home')">Home</a></li>
+                <li><a href="#" onclick="showPage('about')">About</a></li>
+                <li><a href="#" onclick="showPage('worlds')">Explore Worlds</a></li>
+                <li><a href="#" onclick="showPage('episodes')">Podcast</a></li>
+                <li><a href="#" onclick="showPage('research')">Research</a></li>
+                <li><a href="#" onclick="showPage('resources')">Resources</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="home" class="active-page">
+        <div class="hero">
+            <h1>Words That Wound</h1>
+            <p class="subtitle">An Anthropological Exploration of Hate Speech and Cultural Boundaries</p>
+            <div class="research-question">
+                <strong>Research Question:</strong> Why do certain words cause harm in some cultural contexts but not others? How do communities define, police, and reclaim language?
+            </div>
+        </div>
+
+        <div class="container">
+            <section>
+                <h2>Enter Different Worlds</h2>
+                <p>Language is never neutral. The same word can be a term of endearment in one community and a weapon in another. This project explores hate speech not as a simple list of "bad words," but as a complex social phenomenon shaped by power, history, and culture.</p>
+                
+                <div class="worlds-grid">
+                    <div class="world-card" onclick="showPage('worlds')">
+                        <h3>🔄 Reclamation</h3>
+                        <p>How marginalized groups take back slurs and transform their meaning through collective action.</p>
+                    </div>
+                    
+                    <div class="world-card" onclick="showPage('worlds')">
+                        <h3>🌍 Lost in Translation</h3>
+                        <p>What happens when hate speech crosses languages and cultures? Exploring context and meaning.</p>
+                    </div>
+                    
+                    <div class="world-card" onclick="showPage('worlds')">
+                        <h3>💻 Digital Battlefield</h3>
+                        <p>How hate speech mutates and spreads online through memes, dog whistles, and algorithmic amplification.</p>
+                    </div>
+                    
+                    <div class="world-card" onclick="showPage('worlds')">
+                        <h3>⚖️ Legal Lines</h3>
+                        <p>Where does free speech end and hate speech begin? Comparing approaches across cultures and legal systems.</p>
+                    </div>
+                    
+                    <div class="world-card" onclick="showPage('worlds')">
+                        <h3>👴👶 Generational Shifts</h3>
+                        <p>Why yesterday's "acceptable" language is today's slur. Tracing how social change reshapes what we can say.</p>
+                    </div>
+                    
+                    <div class="world-card" onclick="showPage('worlds')">
+                        <h3>💪 Counterspeech</h3>
+                        <p>How communities fight back against hate through education, activism, and restorative approaches.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Featured Episode</h2>
+                <div class="episode">
+                    <h3>Episode 1: Introduction - Words as Weapons</h3>
+                    <p class="episode-meta">Duration: 25 minutes | Released: [Date]</p>
+                    <p>An introduction to the project exploring why language matters, how words gain power, and what anthropology can teach us about hate speech.</p>
+                    
+                    <!-- Audio Player Placeholder -->
+                    <audio controls class="audio-player">
+                        <source src="episode1.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    
+                    <p><em>Note: To add your podcast episodes, replace "episode1.mp3" with your audio file name after uploading to your website.</em></p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="about" class="hidden-page">
+        <div class="container">
+            <section>
+                <h2>About This Project</h2>
+                
+                <h3>The Research</h3>
+                <p>Words That Wound is an independent anthropological research project examining hate speech through cultural, sociological, and linguistic lenses. Rather than creating a simple catalog of offensive language, this project explores the social systems that give words their power to harm—and to heal.</p>
+                
+                <div class="info-box">
+                    <h4>🎯 Core Research Questions</h4>
+                    <ul>
+                        <li>How do different cultures define what constitutes hate speech?</li>
+                        <li>What gives certain words power in some contexts but not others?</li>
+                        <li>How do marginalized communities reclaim language used against them?</li>
+                        <li>What happens when hate speech crosses linguistic and cultural boundaries?</li>
+                        <li>How has digital technology changed the spread and impact of hateful language?</li>
+                    </ul>
+                </div>
+
+                <h3>Methodology</h3>
+                <p>This project combines several anthropological approaches:</p>
+                <ul>
+                    <li><strong>Ethnographic Interviews:</strong> Conversations with community members, activists, scholars, and those directly affected by hate speech</li>
+                    <li><strong>Digital Ethnography:</strong> Observation and analysis of online communities and discourse</li>
+                    <li><strong>Oral History:</strong> Documenting how language norms have shifted across generations</li>
+                    <li><strong>Comparative Analysis:</strong> Examining how different cultures approach similar issues</li>
+                    <li><strong>Literature Review:</strong> Engaging with scholarly work in anthropology, sociology, linguistics, and critical race theory</li>
+                </ul>
+
+                <h3>About the Researcher</h3>
+                <p>[Add your bio here - who you are, why this topic matters to you, what your background is, what you hope to learn and share]</p>
+                
+                <div class="info-box">
+                    <h4>📍 My Positionality</h4>
+                    <p>[Explain your relationship to this topic - are you an insider or outsider to the communities you're studying? What biases might you bring? Why is it important for you to acknowledge this?]</p>
+                    <p><em>Example: "As a [your background], I approach this research with both curiosity and humility. I recognize that my perspective is shaped by [your experiences], and I'm committed to centering the voices of those most affected by hate speech rather than speaking for them."</em></p>
+                </div>
+
+                <h3>Ethical Framework</h3>
+                <p>Research on hate speech requires careful ethical consideration. This project is guided by the following principles:</p>
+                
+                <div class="ethics-principles">
+                    <div class="principle">
+                        <h4>✓ Informed Consent</h4>
+                        <p>All participants are fully informed about the project and how their words will be used.</p>
+                    </div>
+                    
+                    <div class="principle">
+                        <h4>✓ Anonymity Options</h4>
+                        <p>Participants can choose to remain anonymous or be credited, with full control over identifying information.</p>
+                    </div>
+                    
+                    <div class="principle">
+                        <h4>✓ Do No Harm</h4>
+                        <p>Avoiding reproduction of hate speech unnecessarily; prioritizing the wellbeing of affected communities.</p>
+                    </div>
+                    
+                    <div class="principle">
+                        <h4>✓ Community-Centered</h4>
+                        <p>Centering the voices and perspectives of those targeted by hate speech.</p>
+                    </div>
+                    
+                    <div class="principle">
+                        <h4>✓ Accountability</h4>
+                        <p>Participants review their quotes before publication; open to feedback and correction.</p>
+                    </div>
+                    
+                    <div class="principle">
+                        <h4>✓ No Platforming Hate</h4>
+                        <p>Not giving uncritical airtime to hate movements under the guise of "both sides."</p>
+                    </div>
+                </div>
+
+                <h3>Limitations</h3>
+                <p>As a student researcher, I acknowledge several limitations:</p>
+                <ul>
+                    <li>Limited geographic scope and sample size</li>
+                    <li>My own cultural blind spots and biases</li>
+                    <li>Inability to capture every perspective or community</li>
+                    <li>Evolving understanding as the research progresses</li>
+                    <li>No formal institutional review board approval</li>
+                </ul>
+                <p>These limitations don't invalidate the research, but it's important to acknowledge them honestly.</p>
+            </section>
+        </div>
+    </div>
+
+    <!-- WORLDS PAGE -->
+    <div id="worlds" class="hidden-page">
+        <div class="container">
+            <section>
+                <h2>Explore Different Worlds</h2>
+                <p>Each "world" represents a different lens through which to understand hate speech and language politics. Click to explore each in depth.</p>
+            </section>
+
+            <section>
+                <h2>🔄 World 1: Reclamation</h2>
+                <h3>How Marginalized Groups Take Back Language</h3>
+                <p>Reclamation is the process by which oppressed communities take slurs used against them and transform them into sources of pride, solidarity, and power. But who gets to reclaim? When does reclamation work, and when does it fail?</p>
+                
+                <h3>Key Questions Explored:</h3>
+                <ul>
+                    <li>What's the difference between insider and outsider usage?</li>
+                    <li>How do communities negotiate generational divides over reclaimed language?</li>
+                    <li>Can a word ever be fully "reclaimed," or does it always carry its painful history?</li>
+                    <li>What happens when reclamation becomes commodified or appropriated?</li>
+                </ul>
+                
+                <h3>Case Studies:</h3>
+                <p>[Add your specific examples here as you research - e.g., "queer," the N-word, "crip," etc.]</p>
+                
+                <h3>Podcast Episodes:</h3>
+                <p><em>Episodes exploring this world will appear here as they're released.</em></p>
+                
+                <h3>Anthropological Concepts:</h3>
+                <ul>
+                    <li><strong>Linguistic Appropriation:</strong> Taking language from another group</li>
+                    <li><strong>Symbolic Inversion:</strong> Turning negative symbols into positive ones</li>
+                    <li><strong>Community Boundaries:</strong> Who's inside vs. outside the group</li>
+                    <li><strong>Power Dynamics:</strong> How structural inequality shapes language use</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>🌍 World 2: Lost in Translation</h2>
+                <h3>When Hate Speech Crosses Languages</h3>
+                <p>What happens when a slur in one language is an innocent word in another? How do multilingual people navigate hate speech across linguistic boundaries?</p>
+                
+                <p><em>[Structure similar to above - add your research findings, questions, case studies, and episodes as you develop them]</em></p>
+            </section>
+
+            <section>
+                <h2>💻 World 3: Digital Battlefield</h2>
+                <h3>Hate Speech in Online Spaces</h3>
+                <p>The internet has transformed how hate speech spreads and evolves. Memes, dog whistles, and algorithmic amplification create new challenges.</p>
+                
+                <p><em>[Add your findings about online hate, specific platforms, meme evolution, etc.]</em></p>
+            </section>
+
+            <!-- Add similar sections for other worlds -->
+        </div>
+    </div>
+
+    <!-- EPISODES PAGE -->
+    <div id="episodes" class="hidden-page">
+        <div class="container">
+            <section>
+                <h2>Podcast Episodes</h2>
+                <p>Each episode explores a different aspect of hate speech, language, and culture through interviews, analysis, and storytelling.</p>
+            </section>
+
+            <section>
+                <div class="episode">
+                    <h3>Episode 1: Introduction - Words as Weapons</h3>
+                    <p class="episode-meta">Duration: 25 minutes | Released: [Date]</p>
+                    <p>Why do words wound? An introduction to the anthropology of hate speech, exploring how language reflects and reinforces social power.</p>
+                    
+                    <h4>In This Episode:</h4>
+                    <ul>
+                        <li>What is hate speech from an anthropological perspective?</li>
+                        <li>How words gain and lose power over time</li>
+                        <li>Why context matters more than the word itself</li>
+                        <li>Overview of the project and what's to come</li>
+                    </ul>
+                    
+                    <audio controls class="audio-player">
+                        <source src="episode1.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    
+                    <h4>Key Concepts:</h4>
+                    <p>Speech act theory, symbolic violence, linguistic relativity</p>
+                    
+                    <h4>Further Reading:</h4>
+                    <ul>
+                        <li>[Add relevant academic articles or books]</li>
+                    </ul>
+                </div>
+
+                <div class="episode">
+                    <h3>Episode 2: [Your Next Episode Title]</h3>
+                    <p class="episode-meta">Duration: [X] minutes | Released: [Date]</p>
+                    <p>[Episode description]</p>
+                    
+                    <audio controls class="audio-player">
+                        <source src="episode2.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+
+                <p><em>More episodes will be added as they're released. Subscribe on [Spotify/Apple Podcasts/etc.] to get notifications.</em></p>
+            </section>
+        </div>
+    </div>
+
+    <!-- RESEARCH PAGE -->
+    <div id="research" class="hidden-page">
+        <div class="container">
+            <section>
+                <h2>Research Findings</h2>
+                <p>This section presents the analytical work behind the podcast—themes, patterns, and insights emerging from interviews and observations.</p>
+                
+                <div class="info-box">
+                    <h4>📊 Project Status</h4>
+                    <p>This is an ongoing research project. Findings will be updated regularly as new interviews are conducted and analysis deepens.</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>Emerging Themes</h2>
+                
+                <h3>Theme 1: Power and Permission</h3>
+                <p>[Discuss what you're learning about who has permission to say certain words and why]</p>
+                
+                <h3>Theme 2: Context Collapse</h3>
+                <p>[Explore how digital spaces flatten context, making hate speech more complicated]</p>
+                
+                <h3>Theme 3: [Your Theme]</h3>
+                <p>[Add themes as they emerge from your research]</p>
+            </section>
+
+            <section>
+                <h2>Theoretical Framework</h2>
+                <p>This project draws on several anthropological and sociological theories:</p>
+                
+                <h3>Speech Act Theory (J.L. Austin)</h3>
+                <p>Words don't just describe reality—they create it. Hate speech performs harm through its utterance.</p>
+                
+                <h3>Symbolic Violence (Pierre Bourdieu)</h3>
+                <p>How language reinforces power structures subtly and systemically.</p>
+                
+                <h3>Performativity (Judith Butler)</h3>
+                <p>Identity and social categories are created through repeated linguistic acts.</p>
+                
+                <p><em>[Add more theoretical concepts as you engage with academic literature]</em></p>
+            </section>
+
+            <section>
+                <h2>Methodology Notes</h2>
+                <p>Reflections on the research process, challenges encountered, and methodological decisions.</p>
+                
+                <h3>Interview Process</h3>
+                <p>[Describe how you're conducting interviews, what questions you're asking, how you're analyzing responses]</p>
+                
+                <h3>Ethical Dilemmas</h3>
+                <p>[Document challenging situations and how you navigated them]</p>
+                
+                <h3>What I'm Learning About Research</h3>
+                <p>[Meta-reflections on doing anthropology as a high school student]</p>
+            </section>
+        </div>
+    </div>
+
+    <!-- RESOURCES PAGE -->
+    <div id="resources" class="hidden-page">
+        <div class="container">
+            <section>
+                <h2>Resources & Bibliography</h2>
+                <p>A curated collection of academic sources, organizations, and further reading for those interested in learning more.</p>
+            </section>
+
+            <section>
+                <h2>📚 Academic Sources</h2>
+                
+                <h3>Key Texts</h3>
+                <ul>
+                    <li>Butler, Judith. <em>Excitable Speech: A Politics of the Performative</em></li>
+                    <li>Matsuda, Mari J. et al. <em>Words That Wound: Critical Race Theory, Assaultive Speech, and the First Amendment</em></li>
+                    <li>Bourdieu, Pierre. <em>Language and Symbolic Power</em></li>
+                    <li>[Add sources as you read them]</li>
+                </ul>
+                
+                <h3>Journal Articles</h3>
+                <ul>
+                    <li>[Add relevant academic articles you've consulted]</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>🏛️ Organizations</h2>
+                
+                <h3>Research & Advocacy</h3>
+                <ul>
+                    <li><strong>Southern Poverty Law Center (SPLC):</strong> Tracks hate groups and extremism</li>
+                    <li><strong>Anti-Defamation League (ADL):</strong> Combats antisemitism and hate</li>
+                    <li><strong>GLAAD:</strong> LGBTQ+ media advocacy</li>
+                    <li>[Add relevant organizations]</li>
+                </ul>
+                
+                <h3>Support Resources</h3>
+                <ul>
+                    <li>[Organizations that support targets of hate speech]</li>
+                    <li>[Mental health resources]</li>
+                    <li>[Legal aid organizations]</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>🎓 For Educators</h2>
+                <p>Resources for teaching about hate speech, language politics, and social justice:</p>
+                <ul>
+                    <li>[Teaching guides]</li>
+                    <li>[Discussion questions]</li>
+                    <li>[Age-appropriate materials]</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>🔗 Related Projects</h2>
+                <p>Other researchers and projects exploring similar themes:</p>
+                <ul>
+                    <li>[Link to related work]</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>📬 Contact & Feedback</h2>
+                <p>This is a learning project, and I welcome feedback, corrections, and additional perspectives.</p>
+                <p><strong>Email:</strong> [weikendall@gmail.com]</p>
+                <p><strong>Feedback Form:</strong> [link if you create one]</p>
+                <p>If you'd like to be interviewed for this project, please reach out!</p>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Words That Wound | An Independent Research Project</p>
+        <p>Created by [Kendall Wei] | <a href="#">Privacy Policy</a> | <a href="#">Contact</a></p>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = ['home', 'about', 'worlds', 'episodes', 'research', 'resources'];
+            pages.forEach(page => {
+                const element = document.getElementById(page);
+                if (element) {
+                    element.className = 'hidden-page';
+                }
+            });
+            
+            // Show selected page
+            const selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.className = 'active-page';
+            }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
